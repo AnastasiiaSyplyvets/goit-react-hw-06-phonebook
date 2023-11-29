@@ -1,0 +1,42 @@
+.labelName {
+  font-size: 16px;
+  font-weight: 700;
+
+  color: rgb(0, 51, 0);
+}
+
+.input {
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-color: rgb(0, 51, 0);
+}
+
+.addBtn {
+  width: 100px;
+  height: 40px;
+
+  border-radius: 10px;
+  border-color: rgb(0, 102, 0);
+  color: rgb(20, 82, 20);
+  background-color: rgb(153, 230, 153);
+
+  font-size: 16px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.mainTitle {
+  font-size: 26px;
+  color: rgb(20, 82, 20);
+}
+
+.subTitle {
+  font-size: 20px;
+  color: rgb(20, 82, 20);
+}
+
+.listCover {
+  width: 400px;
+}

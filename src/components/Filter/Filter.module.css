@@ -1,0 +1,11 @@
+.findOption {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(0, 102, 0);
+}
+
+.filterInput {
+  margin-left: 20px;
+  border-color: rgb(0, 51, 0);
+  border-radius: 10px;
+}

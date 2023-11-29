@@ -1,0 +1,37 @@
+.contactList {
+  list-style: none;
+  background-color: rgb(179, 255, 179);
+
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+
+  border-radius: 10px;
+}
+
+.contactText {
+  margin-left: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(0, 77, 0);
+}
+
+.deleteBtn {
+  width: 70px;
+  height: 30px;
+
+  margin-top: 10px;
+  margin-right: 20px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  background-color: rgb(0, 128, 0);
+  border-radius: 10px;
+  border: none;
+
+  color: #fff;
+
+  cursor: pointer;
+}
