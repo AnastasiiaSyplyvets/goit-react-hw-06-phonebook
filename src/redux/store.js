@@ -1,72 +1,25 @@
-import { createStore } from 'redux';
-import { devToolsEnhancer } from '@redux-devtools/extension';
-import { nanoid } from 'nanoid';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+// import { rootReducer } from './reducer';
+import { contactsReducer } from './contactSlice';
+import { filterReducer } from './filterSlice';
 
-const initialState = {
-  contacts: [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ],
-  filter: '',
-};
+// import { persistReducer } from 'redux-persist';
 
-// ACTIONS
+// const rootReducer = combineReducers({
+//   contacts: contactsReducer,
+//   filter: filterReducer,
+// });
 
-export const addNewContact = data => {
-  return {
-    type: 'contacts/addNewContact',
-    payload: {
-      id: nanoid(),
-      name: data.name,
-      number: data.number,
-    },
-  };
-};
+// const persistConfig = {
+//   key: 'root',
+//   storage,
+//   whitelist: ['contacts'],
+// };
 
-export const deleteContact = id => {
-  return {
-    type: 'contacts/deleteContact',
-    payload: id,
-  };
-};
+// const persistedRecuser = persistReducer(persistConfig, rootReducer);
 
-export const changeFilterAction = value => {
-  return {
-    type: 'filter/changeFilterAction',
-    payload: value,
-  };
-};
-
-// REDUCERS
-
-const enhancer = devToolsEnhancer();
-const rootReduces = (state = initialState, action) => {
-  switch (action.type) {
-    case 'contacts/addNewContact':
-      return {
-        ...state,
-        contacts: [...state.contacts, action.payload],
-      };
-
-    case 'contacts/deleteContact':
-      return {
-        ...state,
-        contacts: [...state.contacts].filter(
-          contact => contact.id !== action.payload
-        ),
-      };
-
-    case 'filter/changeFilterAction':
-      return {
-        ...state,
-        filter: action.payload,
-      };
-
-    default:
-      return state;
-  }
-};
-
-export const store = createStore(rootReduces, enhancer);
+// configureStore({ reducer: persistedRecuser });
+export const store = configureStore({
+  reducer: { contacts: contactsReducer, filter: filterReducer },
+  // reducer: persistedRecuser,
+});

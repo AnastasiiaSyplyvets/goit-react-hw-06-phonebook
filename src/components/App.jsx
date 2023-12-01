@@ -4,9 +4,8 @@ import Form from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { Contact } from './ContactList/ContactList';
 
-import { addNewContact } from '../redux/store';
-import { deleteContact } from '../redux/store';
-import { changeFilterAction } from '../redux/store';
+import { addNewContact, deleteContact } from '../redux/contactSlice';
+import { changeFilterAction } from '../redux/filterSlice';
 
 import css from '../components/ContactForm/ContactForm.module.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -14,9 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux';
 
 export const App = () => {
-  // REDUX
-
-  const contactsRedux = useSelector(state => state);
+  const contactsRedux = useSelector(state => state.contacts);
+  const filterRedux = useSelector(state => state.filter);
   const dispatch = useDispatch();
 
   const createContact = data => {
@@ -55,7 +53,7 @@ export const App = () => {
     dispatch(changeFilterAction(e.target.value));
   };
   const filterContacts = () => {
-    const normalizedFilter = contactsRedux.filter.toLowerCase().trim();
+    const normalizedFilter = filterRedux.filter.toLowerCase().trim();
 
     return contactsRedux.contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
