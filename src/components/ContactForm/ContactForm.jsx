@@ -19,8 +19,6 @@ const Form = ({ onSubmit }) => {
       default:
         break;
     }
-
-    console.log(event.target.value);
   };
 
   const handleFormReset = () => {

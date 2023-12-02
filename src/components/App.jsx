@@ -1,16 +1,15 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addNewContact, deleteContact } from '../redux/contactSlice';
+import { changeFilterAction } from '../redux/filterSlice';
 
 import Form from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { Contact } from './ContactList/ContactList';
 
-import { addNewContact, deleteContact } from '../redux/contactSlice';
-import { changeFilterAction } from '../redux/filterSlice';
-
 import css from '../components/ContactForm/ContactForm.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector, useDispatch } from 'react-redux';
 
 export const App = () => {
   const contactsRedux = useSelector(state => state.contacts);
