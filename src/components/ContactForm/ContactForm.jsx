@@ -1,9 +1,19 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { addNewContact } from '../../redux/contactSlice';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import css from './ContactForm.module.css';
 
-const Form = ({ onSubmit }) => {
+const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const contactsRedux = useSelector(state => state.contacts);
+  const dispatch = useDispatch();
 
   const handleInputChange = event => {
     const value = event.target.value;
@@ -30,9 +40,41 @@ const Form = ({ onSubmit }) => {
     event.preventDefault();
     setName(name);
     setNumber(number);
-    onSubmit({ name, number });
+    createContact({ name, number });
 
     handleFormReset();
+  };
+
+  const createContact = data => {
+    if (
+      contactsRedux.contacts.find(
+        contact => contact.name === data.name && contact.number === data.number
+      )
+    ) {
+      toast.error('Such contact exists!', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
+    } else {
+      dispatch(addNewContact(data));
+
+      toast.success('Contact added!', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
+    }
   };
 
   return (
